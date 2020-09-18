@@ -968,12 +968,12 @@ video {
   top: 0;
 }
 
-.bottom-0 {
-  bottom: 0;
+.right-0 {
+  right: 0;
 }
 
-.top-auto {
-  top: auto;
+.bottom-0 {
+  bottom: 0;
 }
 
 .fill-current {
@@ -1047,6 +1047,10 @@ video {
 
 .w-32 {
   width: 8rem;
+}
+
+.w-auto {
+  width: auto;
 }
 
 .w-full {

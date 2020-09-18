@@ -154,9 +154,11 @@
           <div
             class="flex flex-col items-center justify-center flex-auto w-32 py-2 bg-yellow-200 bg-opacity-25 rounded-lg cursor-pointer fl"
           >
+            <div class=""></div>
             <img class="h-10" :src="icon(day.weather[0].icon)" alt="" />
             <div class="text-sm font-bold">
-              {{ Math.round(day.temp.day * 10) / 10 }}&deg;C
+              {{ Math.round(day.temp.min * 10) / 10 }}&deg;C -
+              {{ Math.round(day.temp.max * 10) / 10 }}&deg;C
             </div>
             <div
               v-if="index === 0"
@@ -279,7 +281,7 @@ export default {
     utc_date(time) {
       const date = new Date(time * 1000);
 
-      return date.toUTCString().slice(-24, -15);
+      return date.toUTCString().slice(-24, -18);
     }
   },
   mounted: function() {
