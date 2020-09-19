@@ -1,6 +1,5 @@
 <template>
   <div id="app" class="w-screen h-screen antialiased text-gray-800 bg-gray-200">
-    <navbar :apiKey="apiKey" :title="title" :url="url" />
     <div
       class="z-10 min-w-full min-h-full p-5 pt-24 bg-fixed md:px-16 lg:px-32"
       v-if="typeof weather.timezone != 'undefined'"
@@ -156,7 +155,7 @@
           >
             <div class=""></div>
             <img class="h-10" :src="icon(day.weather[0].icon)" alt="" />
-            <div class="text-sm font-bold">
+            <div class="text-xs font-bold">
               {{ Math.round(day.temp.min * 10) / 10 }}&deg;C -
               {{ Math.round(day.temp.max * 10) / 10 }}&deg;C
             </div>
@@ -188,17 +187,12 @@
 </template>
 
 <script>
-import Navbar from "@/components/Navbar.vue";
-
 export default {
   name: "Home",
-  components: {
-    Navbar
-  },
+  components: {},
   props: {},
   data() {
     return {
-      title: "Weather",
       apiKey: "5e2611f98d737a1336862f89296f74c1",
       url: "https://api.openweathermap.org/data/2.5/",
       coordinates: {},

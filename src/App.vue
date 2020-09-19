@@ -1,55 +1,90 @@
 <template>
+  <!-- navbar -->
+  <navbar :apiKey="apiKey" :title="title" :url="url" />
   <router-view />
   <!-- buttons -->
   <div
-    class="absolute bottom-0 right-0 w-auto h-auto text-gray-200 transform bg-transparent"
+    class="absolute bottom-0 right-0 flex flex-col w-auto h-auto mr-5 text-gray-200 transform bg-transparent md:mr-16 lg:mr-24"
   >
     <router-link to="/">
       <button
         type="button"
         v-if="menu"
-        class="inline-flex items-center w-12 h-12 mx-auto mb-5 transition-all duration-200 bg-gray-800 border-none rounded-full outline-none focus:outline-none"
+        class="inline-flex items-center w-12 h-12 mx-auto mb-5 bg-gray-800 border-none rounded-full outline-none animation-delay-300 btn-eased focus:outline-none"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          class="h-10 mx-auto transition-all duration-200 fill-current"
-          viewBox="0 0 20 20"
-          fill="currentColor"
+          viewBox="0 0 24 24"
+          class="h-8 mx-auto stroke-current"
+          stroke-width="1.5"
+          stroke="currentColor"
+          fill="none"
+          stroke-linecap="round"
+          stroke-linejoin="round"
         >
-          <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z" />
-          <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z" />
+          <path stroke="none" d="M0 0h24v24H0z" />
+          <polyline points="5 12 3 12 12 3 21 12 19 12" />
+          <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+          <rect x="10" y="12" width="4" height="4" />
         </svg>
       </button>
     </router-link>
-    <router-link to="/about"
-      ><button
+    <router-link to="/chart">
+      <button
         type="button"
         v-if="menu"
-        class="inline-flex items-center w-12 h-12 mx-auto mb-5 transition-all duration-200 bg-gray-800 border-none rounded-full outline-none focus:outline-none"
+        class="inline-flex items-center w-12 h-12 mx-auto mb-5 bg-gray-800 border-none rounded-full outline-none animation-delay-200 btn-eased focus:outline-none"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          class="h-10 mx-auto transition-all duration-200 fill-current"
-          viewBox="0 0 20 20"
-          fill="currentColor"
+          viewBox="0 0 24 24"
+          class="h-8 mx-auto stroke-current"
+          stroke-width="1.5"
+          stroke="currentColor"
+          fill="none"
+          stroke-linecap="round"
+          stroke-linejoin="round"
         >
-          <path
-            fill-rule="evenodd"
-            d="M12 1.586l-4 4v12.828l4-4V1.586zM3.707 3.293A1 1 0 002 4v10a1 1 0 00.293.707L6 18.414V5.586L3.707 3.293zM17.707 5.293L14 1.586v12.828l2.293 2.293A1 1 0 0018 16V6a1 1 0 00-.293-.707z"
-            clip-rule="evenodd"
-          />
+          <path stroke="none" d="M0 0h24v24H0z" />
+          <line x1="4" y1="19" x2="20" y2="19" />
+          <polyline points="4 15 8 9 12 11 16 6 20 10" />
+        </svg>
+      </button>
+    </router-link>
+    <router-link to="/map"
+      ><button
+        type="button"
+        v-if="menu"
+        class="inline-flex items-center w-12 h-12 mx-auto mb-5 bg-gray-800 border-none rounded-full outline-none animation-delay-100 btn-eased focus:outline-none"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          class="h-8 mx-auto stroke-current"
+          stroke-width="1.5"
+          stroke="currentColor"
+          fill="none"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" />
+          <line x1="18" y1="6" x2="18" y2="6.01" />
+          <path d="M18 13l-3.5 -5a4 4 0 1 1 7 0l-3.5 5" />
+          <polyline points="10.5 4.75 9 4 3 7 3 20 9 17 15 20 21 17 21 15" />
+          <line x1="9" y1="4" x2="9" y2="17" />
+          <line x1="15" y1="15" x2="15" y2="20" />
         </svg>
       </button>
     </router-link>
     <button
       type="button"
       @click="menu = !menu"
-      class="inline-flex items-center w-12 h-12 mx-auto mb-5 transition-all duration-200 bg-gray-800 border-none rounded-full outline-none focus:outline-none"
+      class="inline-flex items-center w-12 h-12 mx-auto mb-5 bg-gray-800 border-none rounded-full outline-none focus:outline-none"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         v-if="!menu"
-        class="h-10 mx-auto transition-all duration-200 fill-current"
+        class="h-8 mx-auto fill-current"
         viewBox="0 0 20 20"
         fill="currentColor"
       >
@@ -62,7 +97,7 @@
       <svg
         xmlns="http://www.w3.org/2000/svg"
         v-else
-        class="h-10 mx-auto transition-all duration-200 fill-current"
+        class="h-8 mx-auto fill-current"
         viewBox="0 0 20 20"
         fill="currentColor"
       >
@@ -76,13 +111,25 @@
   </div>
 </template>
 <script>
+import Navbar from "@/components/Navbar.vue";
+
 export default {
   name: "App",
-  components: {},
+  components: {
+    Navbar
+  },
   props: {},
   data() {
     return {
-      menu: false
+      title: "Weather",
+      menu: false,
+      apiKey: "5e2611f98d737a1336862f89296f74c1",
+      url: "https://api.openweathermap.org/data/2.5/",
+      coordinates: {},
+      weather: {},
+      temperature: false,
+      show: true,
+      timer: null
     };
   }
 };
