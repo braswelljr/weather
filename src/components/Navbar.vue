@@ -68,12 +68,18 @@
         v-if="open"
         class="absolute inset-0 z-auto w-full h-full bg-gray-400 bg-opacity-50"
       ></button>
+      <search-card :query="query" />
     </div>
   </div>
 </template>
 
 <script>
+import SearchCard from "@/components/SearchCard.vue";
+
 export default {
+  components: {
+    SearchCard
+  },
   props: {
     title: String,
     apiKey: String,
