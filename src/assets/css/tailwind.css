@@ -49,19 +49,23 @@
   width: 0;
   background: transparent;
 }
-.btn-eased{
+.btn-eased {
   animation: through 300ms ease-in alternate;
 }
-@keyframes through{
-  from{ transform: translateY(5rem) scale(0) }
-  to{ transform: translateY(0) scale(1) }
+@keyframes through {
+  from {
+    transform: translateY(5rem) scale(0);
+  }
+  to {
+    transform: translateY(0) scale(1);
+  }
 }
-.animation-delay-100{
+.animation-delay-100 {
   animation-delay: 100ms;
 }
-.animation-delay-200{
+.animation-delay-200 {
   animation-delay: 200ms;
 }
-.animation-delay-300{
+.animation-delay-300 {
   animation-delay: 300ms;
 }

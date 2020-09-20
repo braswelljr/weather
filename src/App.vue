@@ -10,7 +10,7 @@
       <button
         type="button"
         v-if="menu"
-        class="inline-flex items-center w-12 h-12 mx-auto mb-5 bg-gray-800 border-none rounded-full outline-none animation-delay-300 btn-eased focus:outline-none"
+        class="inline-flex items-center w-12 h-12 mx-auto mb-5 bg-gray-800 border-none rounded-full outline-none btn-eased animation-delay-300 focus:outline-none"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -33,7 +33,7 @@
       <button
         type="button"
         v-if="menu"
-        class="inline-flex items-center w-12 h-12 mx-auto mb-5 bg-gray-800 border-none rounded-full outline-none animation-delay-200 btn-eased focus:outline-none"
+        class="inline-flex items-center w-12 h-12 mx-auto mb-5 bg-gray-800 border-none rounded-full outline-none btn-eased animation-delay-200 focus:outline-none"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -55,7 +55,7 @@
       ><button
         type="button"
         v-if="menu"
-        class="inline-flex items-center w-12 h-12 mx-auto mb-5 bg-gray-800 border-none rounded-full outline-none animation-delay-100 btn-eased focus:outline-none"
+        class="inline-flex items-center w-12 h-12 mx-auto mb-5 bg-gray-800 border-none rounded-full outline-none btn-eased animation-delay-100 focus:outline-none"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
