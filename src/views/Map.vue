@@ -1,5 +1,38 @@
 <template>
-  <div class="w-screen h-screen antialiased text-gray-200 bg-red-800">
-    <h1>This is an map page</h1>
+  <div class="w-screen h-screen antialiased text-gray-200 bg-green-800">
+    <div
+      class="z-10 min-w-full min-h-full p-5 pt-24 bg-fixed md:px-16 lg:px-32"
+      v-if="typeof weather.timezone != 'undefined'"
+      :class="
+        weather.current.temp < 18
+          ? ' bg-blue-400 text-gray-800'
+          : ' bg-red-900 text-gray-200'
+      "
+    >
+      <span class="font-medium uppercase"> {{ weather.timezone }} </span>
+    </div>
+    <div
+      class="w-full h-full p-5 pt-20 bg-green-900 md:px-16 lg:px-32"
+      v-else-if="
+        typeof weather.timezone == 'undefined' ||
+          typeof weather.timezone == null
+      "
+    >
+      <div class="flex items-center h-full bouncing-loader">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
   </div>
 </template>
+<script>
+export default {
+  name: "Home",
+  components: {},
+  props: {
+    weather: Object,
+    timer: String
+  }
+};
+</script>

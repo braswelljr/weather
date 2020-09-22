@@ -165,6 +165,8 @@ export default {
         .then(response => response.json())
         .then(result => (this.weather = result))
         .catch(error => console.warn(error));
+
+      navigator.geolocation.clearWatch(this.coordinates.id);
     };
     const errorCallback = error => console.error(error);
     navigator.geolocation.watchPosition(successCallback, errorCallback, {
