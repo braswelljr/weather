@@ -5,14 +5,14 @@
       v-if="typeof weather.timezone != 'undefined'"
       :class="
         weather.current.temp < 18
-          ? ' bg-blue-400 text-gray-800'
-          : ' bg-red-900 text-gray-200'
+          ? ' bg-green-400 text-gray-800'
+          : ' bg-gray-900 text-gray-200'
       "
     >
       <span class="font-medium uppercase"> {{ weather.timezone }} </span>
     </div>
     <div
-      class="w-full h-full p-5 pt-20 bg-green-900 md:px-16 lg:px-32"
+      class="w-full h-full p-5 pt-20 bg-gray-900 md:px-16 lg:px-32"
       v-else-if="
         typeof weather.timezone == 'undefined' ||
           typeof weather.timezone == null
