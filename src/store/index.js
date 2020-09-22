@@ -1,12 +1,13 @@
 import { createStore } from "vuex";
+import user from "./modules/user";
 
 export default createStore({
   state() {
-    return {
-      weather: {}
-    };
+    return {};
   },
   mutations: {},
   actions: {},
-  modules: {}
+  modules: {
+    user
+  }
 });

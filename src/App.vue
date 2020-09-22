@@ -1,7 +1,7 @@
 <template>
   <!-- navbar -->
-  <navbar :apiKey="apiKey" :title="title" :url="url" />
-  <router-view />
+  <navbar :title="title" />
+  <router-view :weather="weather" :timer="timer" />
   <!-- buttons -->
   <div
     class="absolute bottom-0 right-0 flex flex-col w-auto h-auto mr-5 text-gray-200 transform bg-transparent md:mr-16 lg:mr-24"
@@ -131,6 +131,47 @@ export default {
       show: true,
       timer: null
     };
+  },
+  methods: {
+    time() {
+      const day = new Date();
+      let hour = day.getHours();
+      let minutes = day.getMinutes();
+      let seconds = day.getSeconds();
+
+      if (hour < 10) hour = "0" + hour;
+      if (minutes < 10) minutes = "0" + minutes;
+      if (seconds < 10) seconds = "0" + seconds;
+
+      let ampm = "am";
+      if (hour >= 12) ampm = "pm";
+      if (hour > 12) hour = hour - 12;
+      if (hour == 0) hour = 12;
+      return `${hour} : ${minutes} : ${seconds} ${ampm}`;
+    }
+  },
+  computed() {},
+  mounted() {
+    setInterval(() => {
+      this.timer = this.time();
+      return this.timer;
+    }, 1000);
+    const successCallback = position => {
+      this.coordinates = position.coords;
+
+      fetch(
+        `${this.url}onecall?lat=${this.coordinates.latitude}&lon=${this.coordinates.longitude}&units=metric&appid=${this.apiKey}`
+      )
+        .then(response => response.json())
+        .then(result => (this.weather = result))
+        .catch(error => console.warn(error));
+    };
+    const errorCallback = error => console.error(error);
+    navigator.geolocation.watchPosition(successCallback, errorCallback, {
+      enableHighAccuracy: true,
+      timeout: 10000,
+      maximumAge: 0
+    });
   }
 };
 </script>

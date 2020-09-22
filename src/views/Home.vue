@@ -120,7 +120,7 @@
         <p class="mt-2 text-lg font-semibold text-center">{{ date() }}</p>
       </div>
 
-      <!-- hourly weather forecast -->
+      <!-- hourly modules forecast -->
       <div
         class="flex items-center h-32 gap-4 mt-5 overflow-scroll overflow-y-hidden scrolling-touch whitespace-no-wrap w-100 scrollbar-none"
       >
@@ -145,7 +145,7 @@
 
       <hr class="bg-gray-200" />
 
-      <!-- daily weather forecast -->
+      <!-- daily modules forecast -->
       <div
         class="flex items-center h-32 gap-4 mt-5 overflow-scroll overflow-y-hidden scrolling-touch whitespace-no-wrap lg:justify-center w-100 scrollbar-none"
       >
@@ -190,19 +190,17 @@
 export default {
   name: "Home",
   components: {},
-  props: {},
+  props: {
+    weather: Object,
+    timer: String
+  },
   data() {
     return {
-      apiKey: "5e2611f98d737a1336862f89296f74c1",
-      url: "https://api.openweathermap.org/data/2.5/",
-      coordinates: {},
-      weather: {},
       temperature: false,
-      show: true,
-      timer: null
+      show: true
     };
   },
-  computed: {},
+  computed() {},
   methods: {
     rotate(angle) {
       return `transform: rotate(${angle}deg)`;
@@ -239,22 +237,6 @@ export default {
         months[day.getMonth()]
       } ${day.getDate()}, ${day.getFullYear()}`;
     },
-    time() {
-      const day = new Date();
-      let hour = day.getHours();
-      let minutes = day.getMinutes();
-      let seconds = day.getSeconds();
-
-      if (hour < 10) hour = "0" + hour;
-      if (minutes < 10) minutes = "0" + minutes;
-      if (seconds < 10) seconds = "0" + seconds;
-
-      let ampm = "am";
-      if (hour >= 12) ampm = "pm";
-      if (hour > 12) hour = hour - 12;
-      if (hour == 0) hour = 12;
-      return `${hour} : ${minutes} : ${seconds} ${ampm}`;
-    },
     utc_to_time(time) {
       const date = new Date(time * 1000);
 
@@ -278,27 +260,6 @@ export default {
       return date.toUTCString().slice(-24, -18);
     }
   },
-  mounted: function() {
-    setInterval(() => {
-      this.timer = this.time();
-      return this.timer;
-    }, 1000);
-    const successCallback = position => {
-      this.coordinates = position.coords;
-
-      fetch(
-        `${this.url}onecall?lat=${this.coordinates.latitude}&lon=${this.coordinates.longitude}&units=metric&appid=${this.apiKey}`
-      )
-        .then(response => response.json())
-        .then(result => (this.weather = result))
-        .catch(error => console.warn(error));
-    };
-    const errorCallback = error => console.error(error);
-
-    navigator.geolocation.watchPosition(successCallback, errorCallback, {
-      enableHighAccuracy: true,
-      timeout: 10000
-    });
-  }
+  mounted() {}
 };
 </script>
