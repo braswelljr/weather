@@ -1,6 +1,5 @@
 @tailwind base;
 @tailwind components;
-@tailwind utilities;
 .bg-warm{
   background-image: url(./../img/forest-3119826_1280.jpg);
   background-repeat: no-repeat;
@@ -69,3 +68,4 @@
 .animation-delay-300 {
   animation-delay: 300ms;
 }
+@tailwind utilities;

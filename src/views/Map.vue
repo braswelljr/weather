@@ -9,7 +9,7 @@
           : ' bg-gray-900 text-gray-200'
       "
     >
-      <span class="font-medium uppercase"> {{ weather.timezone }} </span>
+      <h1 class="text-3xl font-semibold text-center uppercase">Map</h1>
     </div>
     <div
       class="w-full h-full p-5 pt-20 bg-gray-900 md:px-16 lg:px-32"

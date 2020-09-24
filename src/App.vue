@@ -4,13 +4,13 @@
   <router-view :weather="weather" :timer="timer" />
   <!-- buttons -->
   <div
-    class="absolute bottom-0 right-0 flex flex-col w-auto h-auto mr-5 text-gray-200 transform bg-transparent md:mr-16 lg:mr-24"
+    class="fixed bottom-0 right-0 flex flex-col w-auto h-auto mr-5 text-gray-200 transform bg-transparent md:mr-16 lg:mr-24"
   >
-    <router-link to="/">
+    <router-link to="/" class="w-auto h-auto mb-5">
       <button
         type="button"
         v-if="menu"
-        class="inline-flex items-center w-12 h-12 mx-auto mb-5 bg-gray-800 border-none rounded-full outline-none btn-eased animation-delay-300 focus:outline-none"
+        class="inline-flex items-center w-12 h-12 mx-auto bg-gray-800 border-none rounded-full outline-none btn-eased animation-delay-300 focus:outline-none"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -29,11 +29,11 @@
         </svg>
       </button>
     </router-link>
-    <router-link to="/chart">
+    <router-link to="/chart" class="w-auto h-auto mb-5">
       <button
         type="button"
         v-if="menu"
-        class="inline-flex items-center w-12 h-12 mx-auto mb-5 bg-gray-800 border-none rounded-full outline-none btn-eased animation-delay-200 focus:outline-none"
+        class="inline-flex items-center w-12 h-12 mx-auto bg-gray-800 border-none rounded-full outline-none btn-eased animation-delay-200 focus:outline-none"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -51,11 +51,11 @@
         </svg>
       </button>
     </router-link>
-    <router-link to="/map"
+    <router-link to="/map" class="w-auto h-auto mb-5"
       ><button
         type="button"
         v-if="menu"
-        class="inline-flex items-center w-12 h-12 mx-auto mb-5 bg-gray-800 border-none rounded-full outline-none btn-eased animation-delay-100 focus:outline-none"
+        class="inline-flex items-center w-12 h-12 mx-auto bg-gray-800 border-none rounded-full outline-none btn-eased animation-delay-100 focus:outline-none"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
