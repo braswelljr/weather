@@ -148,6 +148,63 @@ export default {
       if (hour > 12) hour = hour - 12;
       if (hour == 0) hour = 12;
       return `${hour} : ${minutes} : ${seconds} ${ampm}`;
+    },
+    rotate(angle) {
+      return `transform: rotate(${angle}deg)`;
+    },
+    icon(ico) {
+      return `https://openweathermap.org/img/wn/${ico}@2x.png`;
+    },
+    date() {
+      const day = new Date();
+      const months = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December"
+      ];
+      const days = [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+      ];
+      return `${days[day.getDay()]} ${
+        months[day.getMonth()]
+      } ${day.getDate()}, ${day.getFullYear()}`;
+    },
+    utc_to_time(time) {
+      const date = new Date(time * 1000);
+
+      return date.toUTCString().slice(-11, -4);
+    },
+    utc_to_hours(time) {
+      const date = new Date(time * 1000);
+
+      return date.toUTCString().slice(-12, -10);
+    },
+    hours(hour) {
+      let ampm = "am";
+      if (hour >= 12) ampm = "pm";
+      if (hour > 12) hour = hour - 12;
+      if (hour == 0) hour = 12;
+      return `${hour} ${ampm}`;
+    },
+    utc_date(time) {
+      const date = new Date(time * 1000);
+
+      return date.toUTCString().slice(-24, -18);
     }
   },
   computed() {},

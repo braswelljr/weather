@@ -1,7 +1,7 @@
 <template>
   <div class="antialiased">
     <div
-      class="z-10 min-w-full min-h-full p-5 pt-24 bg-fixed md:px-16 lg:px-32"
+      class="z-10 min-h-screen p-5 pt-24 bg-fixed min-w-screen md:px-16 lg:px-32"
       v-if="typeof weather.timezone != 'undefined'"
       :class="
         weather.current.temp > 18
@@ -11,22 +11,28 @@
     >
       <div class="flex flex-wrap items-center justify-center mx-5">
         <div class="block w-full mx-auto my-6 sm:w-1/2">
-          <canvas
-            id="myChart"
-            width="300"
-            height="300"
-            class="inset-0 block"
-          ></canvas>
+          <h1 class="font-bold text-center uppercase">7 day</h1>
+          <div class="">
+            <canvas
+              id="daily"
+              width="300"
+              height="300"
+              class="inset-0 block"
+            ></canvas>
+          </div>
         </div>
         <div class="block w-full mx-auto my-6 sm:w-1/2">
-          <canvas
-            id="hisChart"
-            width="300"
-            height="300"
-            class="inset-0 block"
-          ></canvas>
+          <h1 class="font-bold text-center uppercase">48 Hour</h1>
+          <div class="">
+            <canvas
+              id="hourly"
+              width="300"
+              height="300"
+              class="inset-0 block"
+            ></canvas>
+          </div>
         </div>
-        <div class="block w-full mx-auto my-6 sm:w-1/2">
+        <!-- <div class="block w-full mx-auto my-6 sm:w-1/2">
           <canvas
             id="herChart"
             width="300"
@@ -41,17 +47,17 @@
             height="300"
             class="inset-0 block"
           ></canvas>
-        </div>
+        </div> -->
       </div>
     </div>
     <div
-      class="w-full h-full p-5 pt-20 bg-green-900 md:px-16 lg:px-32"
+      class="z-10 min-h-screen p-5 pt-20 bg-fixed bg-green-900 min-w-screen md:px-16 lg:px-32"
       v-else-if="
         typeof weather.timezone == 'undefined' ||
           typeof weather.timezone == null
       "
     >
-      <div class="flex items-center h-full bouncing-loader">
+      <div class="flex items-center min-h-full bouncing-loader">
         <div></div>
         <div></div>
         <div></div>
@@ -73,57 +79,68 @@ export default {
     return {};
   },
   methods: {
-    createChart(chartId) {
+    createChart(chartId, label, types = [], labels = [], data = [], fill = []) {
       const ctx = document.getElementById(chartId).getContext("2d");
-      const myChart = new Chart(ctx, {
-        type: "line",
+      new Chart(ctx, {
+        type: types[0], //bar, line, pie, doughnut
         data: {
-          labels: [
-            "Mercury",
-            "Venus",
-            "Earth",
-            "Mars",
-            "Jupiter",
-            "Saturn",
-            "Uranus",
-            "Neptune"
-          ],
+          labels: label, //eg days, date
           datasets: [
             {
               // one line graph
-              label: "Number of Moons",
-              type: "line",
-              data: [0, 0, 1, 2, 67, 62, 27, 14],
-              backgroundColor: [],
-              borderColor: [
-                "#36495d",
-                "#36495d",
-                "#36495d",
-                "#36495d",
-                "#36495d",
-                "#36495d",
-                "#36495d",
-                "#36495d"
+              label: labels[0], //data temp, sunrise
+              type: types[1],
+              data: data[0], //y-axis - temperature
+              backgroundColor: [
+                "#14b5ff",
+                "#14b5ff",
+                "#14b5ff",
+                "#14b5ff",
+                "#14b5ff",
+                "#14b5ff",
+                "#14b5ff",
+                "#14b5ff"
               ],
-              borderWidth: 3
+              borderColor: [
+                "#14b5ff",
+                "#14b5ff",
+                "#14b5ff",
+                "#14b5ff",
+                "#14b5ff",
+                "#14b5ff",
+                "#14b5ff",
+                "#14b5ff"
+              ],
+              borderWidth: 6,
+              fill: fill[0]
             },
             {
               // another line graph
-              label: "Planet Mass (x1,000 km)",
-              type: "bar",
-              data: [88.8, 12.1, 12.7, 6.7, 139.8, 116.4, 50.7, 49.2],
+              label: labels[1], //data temp, sunrise
+              type: types[2],
+              data: data[1],
               backgroundColor: [
-                "rgba(214, 158, 46,.5)",
-                "rgba(214, 158, 46,.5)",
-                "rgba(214, 158, 46,.5)",
-                "rgba(214, 158, 46,.5)",
-                "rgba(214, 158, 46,.5)",
-                "rgba(214, 158, 46,.5)",
-                "rgba(214, 158, 46,.5)",
-                "rgba(214, 158, 46,.5)" // Green
+                "#e53e3e",
+                "#e53e3e",
+                "#e53e3e",
+                "#e53e3e",
+                "#e53e3e",
+                "#e53e3e",
+                "#e53e3e",
+                "#e53e3e"
               ],
-              borderColor: [],
-              borderWidth: 3
+              borderColor: [
+                "#e53e3e",
+                "#e53e3e",
+                "#e53e3e",
+                "#e53e3e",
+                "#e53e3e",
+                "#e53e3e",
+                "#e53e3e",
+                "#e53e3e"
+              ],
+              borderWidth: 5,
+              fill: fill[1]
             }
           ]
         },
@@ -135,28 +152,95 @@ export default {
               {
                 ticks: {
                   beginAtZero: true,
-                  padding: 0
-                }
-              }
-            ],
-            xAxes: [
-              {
-                ticks: {
-                  beginAtZero: true,
-                  padding: 0
+                  padding: 20,
+                  min: -15,
+                  max: 50
                 }
               }
             ]
           }
         }
       });
+    },
+    date() {
+      const day = new Date();
+      const months = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December"
+      ];
+      const days = [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+      ];
+      return `${days[day.getDay()]} ${
+        months[day.getMonth()]
+      } ${day.getDate()}, ${day.getFullYear()}`;
+    },
+    utc_to_time(time) {
+      const date = new Date(time * 1000);
+
+      return date.toUTCString().slice(-11, -4);
+    },
+    utc_to_hours(time) {
+      const date = new Date(time * 1000);
+
+      return date.toUTCString().slice(-12, -10);
+    },
+    hours(hour) {
+      let ampm = "am";
+      if (hour >= 12) ampm = "pm";
+      if (hour > 12) hour = hour - 12;
+      if (hour == 0) hour = 12;
+      return `${hour} ${ampm}`;
+    },
+    utc_date(time) {
+      const date = new Date(time * 1000);
+
+      return date.toUTCString().slice(-24, -18);
     }
   },
   mounted() {
-    this.createChart("myChart");
-    this.createChart("hisChart");
-    this.createChart("herChart");
-    this.createChart("theirChart");
+    //daily
+    let minimum = this.weather.daily.map(min => min.temp.min);
+    let maximum = this.weather.daily.map(max => max.temp.max);
+    let date = this.weather.daily.map(day => this.utc_date(day.dt));
+    this.createChart(
+      "daily",
+      date,
+      ["line", "bar", "bar"],
+      ["Minimum temperature", "Maximum Temperature"],
+      [minimum, maximum],
+      [false, false]
+    );
+
+    // hourly chart
+    let temp_h_current = this.weather.hourly.map(cur => cur.temp);
+    let date_h = this.weather.hourly.map(day =>
+      this.hours(this.utc_to_hours(day.dt))
+    );
+    this.createChart(
+      "hourly",
+      date_h,
+      ["line", "bar", "bar"],
+      ["temperature", ""],
+      [temp_h_current],
+      [true, true]
+    );
   }
 };
 </script>

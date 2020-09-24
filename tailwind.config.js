@@ -1,7 +1,7 @@
 module.exports = {
   purge: {
     mode: "all",
-    enabled: false,
+    enabled: true,
     content: ["./src/**/*.vue", "./public/index.html"],
     preserveHtmlElements: true
   },
@@ -11,28 +11,16 @@ module.exports = {
   },
   theme: {
     extend: {
-      height: theme => ({
-        "72": "18em",
-        "80": "20em",
-        "96": "24em",
-        "102": "28em",
-        "128": "32em",
-        "144": "36em",
-        "160": "40em",
-        "192": "48em",
-        "204": "56em"
-      }),
-      margin: {},
-      width: theme => ({
-        "72": "18em",
-        "80": "20em",
-        "96": "24em",
-        "102": "28em",
-        "128": "32em",
-        "144": "36em",
-        "160": "40em",
-        "192": "48em",
-        "204": "56em"
+      spacing: theme => ({
+        "72": "18rem",
+        "80": "20rem",
+        "96": "24rem",
+        "102": "28rem",
+        "128": "32rem",
+        "144": "36rem",
+        "160": "40rem",
+        "192": "48rem",
+        "204": "56rem"
       })
     },
     fontFamily: {},
