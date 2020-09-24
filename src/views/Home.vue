@@ -122,7 +122,7 @@
 
       <!-- hourly modules forecast -->
       <div
-        class="flex items-center h-32 gap-4 mx-4 my-5 overflow-scroll overflow-y-hidden scrolling-touch whitespace-no-wrap w-100 scrollbar-none"
+        class="flex items-center h-32 gap-4 my-5 overflow-scroll overflow-y-hidden scrolling-touch whitespace-no-wrap w-100 scrollbar-none"
       >
         <div v-for="(hour, index) in weather.hourly" :key="hour.dt">
           <div

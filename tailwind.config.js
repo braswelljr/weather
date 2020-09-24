@@ -10,7 +10,31 @@ module.exports = {
     purgeLayersByDefault: true
   },
   theme: {
-    extend: {},
+    extend: {
+      height: theme => ({
+        "72": "18em",
+        "80": "20em",
+        "96": "24em",
+        "102": "28em",
+        "128": "32em",
+        "144": "36em",
+        "160": "40em",
+        "192": "48em",
+        "204": "56em"
+      }),
+      margin: {},
+      width: theme => ({
+        "72": "18em",
+        "80": "20em",
+        "96": "24em",
+        "102": "28em",
+        "128": "32em",
+        "144": "36em",
+        "160": "40em",
+        "192": "48em",
+        "204": "56em"
+      })
+    },
     fontFamily: {},
     zIndex: {
       auto: "auto",
@@ -38,6 +62,7 @@ module.exports = {
     }
   },
   variants: {
+    accessibility: ["responsive", "focus", "hover", "active"],
     borderStyle: ["responsive", "hover", "active", "group-hover"],
     divideStyle: ["responsive", "hover", "focus", "active", "group-hover"],
     gradientColorStops: [
@@ -47,9 +72,13 @@ module.exports = {
       "active",
       "group-hover"
     ],
+    height: ["responsive", "hover", "focus"],
     outLine: ["responsive", "hover", "focus", "active"],
     width: ["responsive", "hover", "focus", "active"],
     zIndex: ["responsive", "hover", "focus"]
   },
-  plugins: []
+  plugins: [
+    require("tailwindcss-debug-screens"),
+    require("tailwindcss-flexbox-order")()
+  ]
 };

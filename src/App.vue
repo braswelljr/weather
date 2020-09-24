@@ -1,7 +1,7 @@
 <template>
   <!-- navbar -->
   <navbar :title="title" />
-  <router-view :weather="weather" :timer="timer" />
+  <router-view :weather="weather" :timer="timer" :key="$route.fullPath" />
   <!-- buttons -->
   <div
     class="fixed bottom-0 right-0 flex flex-col w-auto h-auto mr-5 text-gray-200 transform bg-transparent md:mr-16 lg:mr-24"
