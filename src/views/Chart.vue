@@ -57,7 +57,9 @@
           typeof weather.timezone == null
       "
     >
-      <div class="flex items-center min-h-full bouncing-loader">
+      <div
+        class="flex items-center min-w-full min-h-full mt-32 bouncing-loader"
+      >
         <div></div>
         <div></div>
         <div></div>
@@ -215,32 +217,36 @@ export default {
     }
   },
   mounted() {
-    //daily
-    let minimum = this.weather.daily.map(min => min.temp.min);
-    let maximum = this.weather.daily.map(max => max.temp.max);
-    let date = this.weather.daily.map(day => this.utc_date(day.dt));
-    this.createChart(
-      "daily",
-      date,
-      ["line", "bar", "bar"],
-      ["Minimum temperature", "Maximum Temperature"],
-      [minimum, maximum],
-      [false, false]
-    );
+    if (typeof this.weather.timezone !== "undefined") {
+      //daily
+      let minimum = this.weather.daily.map(min => min.temp.min);
+      let maximum = this.weather.daily.map(max => max.temp.max);
+      let date = this.weather.daily.map(day => this.utc_date(day.dt));
+      this.createChart(
+        "daily",
+        date,
+        ["line", "bar", "bar"],
+        ["Minimum temperature", "Maximum Temperature"],
+        [minimum, maximum],
+        [false, false]
+      );
 
-    // hourly chart
-    let temp_h_current = this.weather.hourly.map(cur => cur.temp);
-    let date_h = this.weather.hourly.map(day =>
-      this.hours(this.utc_to_hours(day.dt))
-    );
-    this.createChart(
-      "hourly",
-      date_h,
-      ["line", "bar", "bar"],
-      ["temperature", ""],
-      [temp_h_current],
-      [true, true]
-    );
+      // hourly chart
+      let temp_h_current = this.weather.hourly.map(cur => cur.temp);
+      let date_h = this.weather.hourly.map(day =>
+        this.hours(this.utc_to_hours(day.dt))
+      );
+      this.createChart(
+        "hourly",
+        date_h,
+        ["line", "bar", "bar"],
+        ["temperature", ""],
+        [temp_h_current],
+        [true, true]
+      );
+    } else {
+      console.log("Connection down or Undefined Zone");
+    }
   }
 };
 </script>
