@@ -1,7 +1,9 @@
+const plugin = require("tailwindcss/plugin");
+
 module.exports = {
   purge: {
     mode: "all",
-    enabled: true,
+    enabled: false,
     content: ["./src/**/*.vue", "./public/index.html"],
     preserveHtmlElements: true
   },
@@ -67,6 +69,13 @@ module.exports = {
   },
   plugins: [
     require("tailwindcss-debug-screens"),
-    require("tailwindcss-flexbox-order")()
+    require("tailwindcss-flexbox-order")(),
+    plugin(function({ addVariant, e }) {
+      addVariant("first-child", ({ modifySelectors, separator }) => {
+        modifySelectors(({ className }) => {
+          return `.${e(`first-child${separator}${className}`)}:first-child`;
+        });
+      });
+    })
   ]
 };

@@ -1,5 +1,11 @@
 @tailwind base;
 @tailwind components;
+.card-l:first-child{
+  margin-left: 0;
+}
+.card-r:last-child{
+  margin-right: 0;
+}
 .bg-warm{
   background-image: url(./../img/forest-3119826_1280.jpg);
   background-repeat: no-repeat;
@@ -15,6 +21,12 @@
   background-size: cover;
   min-height: 100%;
   min-width: 100%;
+}
+@-webkit-keyframes bouncing-loader {
+  to {
+    opacity: 0.1;
+    transform: translate3d(0, -7.5rem, 0);
+  }
 }
 @keyframes bouncing-loader {
   to {
@@ -34,22 +46,34 @@
   margin: 3rem .75rem;
   background: #fefefe;
   border-radius: 50%;
-  animation: bouncing-loader 0.6s infinite alternate;
+  -webkit-animation: bouncing-loader 0.6s infinite alternate;
+          animation: bouncing-loader 0.6s infinite alternate;
 }
 
 .bouncing-loader > div:nth-child(2) {
-  animation-delay: 0.2s;
+  -webkit-animation-delay: 0.2s;
+          animation-delay: 0.2s;
 }
 
 .bouncing-loader > div:nth-child(3) {
-  animation-delay: 0.4s;
+  -webkit-animation-delay: 0.4s;
+          animation-delay: 0.4s;
 }
 .scrollbar-none::-webkit-scrollbar{
   width: 0;
   background: transparent;
 }
 .btn-eased {
-  animation: through 300ms ease-in alternate;
+  -webkit-animation: through 300ms ease-in alternate;
+          animation: through 300ms ease-in alternate;
+}
+@-webkit-keyframes through {
+  from {
+    transform: translateY(5rem) scale(0);
+  }
+  to {
+    transform: translateY(0) scale(1);
+  }
 }
 @keyframes through {
   from {
@@ -60,12 +84,15 @@
   }
 }
 .animation-delay-100 {
-  animation-delay: 100ms;
+  -webkit-animation-delay: 100ms;
+          animation-delay: 100ms;
 }
 .animation-delay-200 {
-  animation-delay: 200ms;
+  -webkit-animation-delay: 200ms;
+          animation-delay: 200ms;
 }
 .animation-delay-300 {
-  animation-delay: 300ms;
+  -webkit-animation-delay: 300ms;
+          animation-delay: 300ms;
 }
 @tailwind utilities;

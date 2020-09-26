@@ -155,7 +155,7 @@ export default {
                 ticks: {
                   beginAtZero: true,
                   padding: 20,
-                  min: -15,
+                  min: -30,
                   max: 50
                 }
               }

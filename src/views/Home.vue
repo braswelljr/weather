@@ -122,23 +122,25 @@
 
       <!-- hourly modules forecast -->
       <div
-        class="flex items-center h-32 gap-4 my-5 overflow-scroll overflow-y-hidden scrolling-touch whitespace-no-wrap w-100 scrollbar-none"
+        class="flex items-center h-32 gap-4 my-5 overflow-scroll overflow-y-hidden scrolling-touch whitespace-no-wrap first:ml-0 w-100 scrollbar-none"
       >
         <div v-for="(hour, index) in weather.hourly" :key="hour.dt">
           <div
-            class="flex flex-col items-center justify-center flex-auto w-24 py-2 bg-yellow-200 bg-opacity-25 rounded-lg fl"
+            class="flex flex-col items-center justify-center flex-auto w-24 py-2 ml-6 bg-yellow-200 bg-opacity-25 rounded-lg card-l"
           >
-            <img class="h-10" :src="icon(hour.weather[0].icon)" alt="" />
-            <div class="text-lg font-bold">
-              {{ Math.round(hour.temp * 10) / 10 }}&deg;C
+            <div class="">
+              <img class="h-10" :src="icon(hour.weather[0].icon)" alt="" />
+              <div class="text-lg font-bold">
+                {{ Math.round(hour.temp * 10) / 10 }}&deg;C
+              </div>
+              <div
+                v-if="index === 0"
+                class="px-1 text-xs text-gray-100 uppercase bg-blue-500 rounded-sm"
+              >
+                NOW
+              </div>
+              <div v-else>{{ hours(utc_to_hours(hour.dt)) }}</div>
             </div>
-            <div
-              v-if="index === 0"
-              class="px-1 text-xs text-gray-100 uppercase bg-blue-500 rounded-sm"
-            >
-              NOW
-            </div>
-            <div v-else>{{ hours(utc_to_hours(hour.dt)) }}</div>
           </div>
         </div>
       </div>
@@ -151,21 +153,22 @@
       >
         <div v-for="(day, index) in weather.daily" :key="day.dt">
           <div
-            class="flex flex-col items-center justify-center flex-auto w-24 py-2 bg-yellow-200 bg-opacity-25 rounded-lg cursor-pointer"
+            class="flex flex-col items-center justify-center flex-auto w-24 py-2 ml-6 bg-yellow-200 bg-opacity-25 rounded-lg cursor-pointer first:ml-0"
           >
-            <div class=""></div>
-            <img class="h-10" :src="icon(day.weather[0].icon)" alt="" />
-            <div class="text-xs font-bold">
-              {{ Math.round(day.temp.min) }}&deg; -
-              {{ Math.round(day.temp.max) }}&deg;
+            <div class="card-l">
+              <img class="h-10" :src="icon(day.weather[0].icon)" alt="" />
+              <div class="text-xs font-bold">
+                {{ Math.round(day.temp.min) }}&deg; -
+                {{ Math.round(day.temp.max) }}&deg;
+              </div>
+              <div
+                v-if="index === 0"
+                class="px-1 mt-1 text-sm text-gray-100 uppercase bg-blue-500 rounded-sm"
+              >
+                Today
+              </div>
+              <div v-else>{{ utc_date(day.dt) }}</div>
             </div>
-            <div
-              v-if="index === 0"
-              class="px-1 mt-1 text-sm text-gray-100 uppercase bg-blue-500 rounded-sm"
-            >
-              Today
-            </div>
-            <div v-else>{{ utc_date(day.dt) }}</div>
           </div>
         </div>
       </div>
