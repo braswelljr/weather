@@ -1,10 +1,10 @@
 @tailwind base;
 @tailwind components;
-.card-l:first-child{
-  margin-left: 0;
+.card-l:not(:first-child){
+  margin-left: 1.5rem;
 }
-.card-r:last-child{
-  margin-right: 0;
+.card-r:not(:last-child){
+  margin-right: 1.5rem;
 }
 .bg-warm{
   background-image: url(./../img/forest-3119826_1280.jpg);

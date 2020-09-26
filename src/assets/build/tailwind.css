@@ -644,12 +644,12 @@ video {
   }
 }
 
-.card-l:first-child{
-  margin-left: 0;
+.card-l:not(:first-child){
+  margin-left: 1.5rem;
 }
 
-.card-r:last-child{
-  margin-right: 0;
+.card-r:not(:last-child){
+  margin-right: 1.5rem;
 }
 
 .bg-warm{

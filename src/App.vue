@@ -213,24 +213,29 @@ export default {
       this.timer = this.time();
       return this.timer;
     }, 1000);
-    const successCallback = position => {
-      this.coordinates = position.coords;
+    // const successCallback = position => {
+    //   this.coordinates = position.coords;
 
-      fetch(
-        `${this.url}onecall?lat=${this.coordinates.latitude}&lon=${this.coordinates.longitude}&units=metric&appid=${this.apiKey}`
-      )
-        .then(response => response.json())
-        .then(result => (this.weather = result))
-        .catch(error => console.warn(error));
+    //   fetch(
+    //     `${this.url}onecall?lat=${this.coordinates.latitude}&lon=${this.coordinates.longitude}&units=metric&appid=${this.apiKey}`
+    //   )
+    //     .then(response => response.json())
+    //     .then(result => (this.weather = result))
+    //     .catch(error => console.warn(error));
 
-      navigator.geolocation.clearWatch(this.coordinates.id);
-    };
-    const errorCallback = error => console.error(error);
-    navigator.geolocation.watchPosition(successCallback, errorCallback, {
-      enableHighAccuracy: true,
-      timeout: 10000,
-      maximumAge: 0
-    });
+    //   navigator.geolocation.clearWatch(this.coordinates.id);
+    // };
+    // const errorCallback = error => console.error(error);
+    // navigator.geolocation.watchPosition(successCallback, errorCallback, {
+    //   enableHighAccuracy: true,
+    //   timeout: 10000,
+    //   maximumAge: 0
+    // });
+
+    fetch(`./info.json`)
+      .then(response => response.json())
+      .then(result => (this.weather = result))
+      .catch(error => console.warn(error));
   }
 };
 </script>

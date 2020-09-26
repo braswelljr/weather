@@ -122,11 +122,11 @@
 
       <!-- hourly modules forecast -->
       <div
-        class="flex items-center h-32 gap-4 my-5 overflow-scroll overflow-y-hidden scrolling-touch whitespace-no-wrap first:ml-0 w-100 scrollbar-none"
+        class="flex items-center h-32 gap-4 my-5 overflow-scroll overflow-y-hidden scrolling-touch whitespace-no-wrap w-100 scrollbar-none"
       >
         <div v-for="(hour, index) in weather.hourly" :key="hour.dt">
           <div
-            class="flex flex-col items-center justify-center flex-auto w-24 py-2 ml-6 bg-yellow-200 bg-opacity-25 rounded-lg card-l"
+            class="flex flex-col items-center justify-center flex-auto w-24 py-2 bg-yellow-200 bg-opacity-25 rounded-lg card-l"
           >
             <div class="">
               <img class="h-10" :src="icon(hour.weather[0].icon)" alt="" />
@@ -153,9 +153,9 @@
       >
         <div v-for="(day, index) in weather.daily" :key="day.dt">
           <div
-            class="flex flex-col items-center justify-center flex-auto w-24 py-2 ml-6 bg-yellow-200 bg-opacity-25 rounded-lg cursor-pointer first:ml-0"
+            class="flex flex-col items-center justify-center flex-auto w-24 py-2 bg-yellow-200 bg-opacity-25 rounded-lg cursor-pointer card-l"
           >
-            <div class="card-l">
+            <div class="">
               <img class="h-10" :src="icon(day.weather[0].icon)" alt="" />
               <div class="text-xs font-bold">
                 {{ Math.round(day.temp.min) }}&deg; -
