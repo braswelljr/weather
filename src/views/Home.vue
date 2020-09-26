@@ -126,7 +126,7 @@
       >
         <div v-for="(hour, index) in weather.hourly" :key="hour.dt">
           <div
-            class="flex flex-col items-center justify-center flex-auto w-24 py-2 bg-yellow-200 bg-opacity-25 rounded-lg card-l"
+            class="flex flex-col items-center justify-center flex-auto w-24 py-2 bg-yellow-200 bg-opacity-25 rounded-lg cursor-pointer card-"
           >
             <div class="">
               <img class="h-10" :src="icon(hour.weather[0].icon)" alt="" />
