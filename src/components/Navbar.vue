@@ -93,7 +93,7 @@ export default {
   }
   /**
   # todos
-  # loading when typing
+  # loading when typing hot reload modules
   */
 };
 </script>

@@ -1,12 +1,12 @@
 <template>
-  <div id="app" class="w-screen h-screen antialiased text-gray-800 bg-gray-200">
+  <div id="app" class="w-full h-screen antialiased text-gray-800 bg-gray-200">
     <div
       class="z-10 min-w-full min-h-full p-5 pt-24 bg-fixed md:px-16 lg:px-32"
       v-if="typeof weather.timezone != 'undefined'"
       :class="
         weather.current.temp < 18
-          ? 'bg-cool text-gray-800'
-          : 'bg-warm text-gray-200'
+          ? 'bg-gradient-to-r from-blue-600 to-gray-500 text-gray-800'
+          : 'bg-gradient-to-bl from-red-900 to-gray-800 text-gray-200'
       "
     >
       <div
@@ -122,59 +122,128 @@
 
       <!-- hourly modules forecast -->
       <div
-        class="flex items-center h-32 gap-4 my-5 overflow-scroll overflow-y-hidden scrolling-touch whitespace-no-wrap w-100 scrollbar-none"
+        class="relative flex items-center justify-start px-1 my-4 overflow-hidden whitespace-no-wrap sm:grid-cols-6 md:grid-cols-7 lg:grid-cols-8"
       >
+        <button
+          type="button"
+          class="absolute left-0 w-8 h-8 bg-gray-200 bg-opacity-75 rounded-full focus:outline-none"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            class="w-6 h-6 mx-auto fill-current"
+            fill="currentColor"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </button>
         <div v-for="(hour, index) in weather.hourly" :key="hour.dt">
           <div
-            class="flex flex-col items-center justify-center flex-auto w-24 py-2 bg-yellow-200 bg-opacity-25 rounded-lg cursor-pointer card-"
+            class="w-24 p-1 m-3 text-center bg-yellow-200 bg-opacity-25 rounded-lg cursor-pointer"
           >
-            <div class="">
-              <img class="h-10" :src="icon(hour.weather[0].icon)" alt="" />
-              <div class="text-lg font-bold">
-                {{ Math.round(hour.temp * 10) / 10 }}&deg;C
-              </div>
-              <div
-                v-if="index === 0"
-                class="px-1 text-xs text-gray-100 uppercase bg-blue-500 rounded-sm"
-              >
-                NOW
-              </div>
-              <div v-else>{{ hours(utc_to_hours(hour.dt)) }}</div>
+            <img
+              class="h-10 mx-auto"
+              :src="icon(hour.weather[0].icon)"
+              alt=""
+            />
+            <div class="text-sm font-bold">
+              {{ Math.round(hour.temp * 10) / 10 }}&deg;C
             </div>
+            <div
+              v-if="index === 0"
+              class="px-1 mt-2 text-xs text-gray-100 uppercase bg-blue-500 rounded-sm"
+            >
+              NOW
+            </div>
+            <div v-else>{{ hours(utc_to_hours(hour.dt)) }}</div>
           </div>
         </div>
+        <button
+          type="button"
+          class="absolute right-0 w-8 h-8 bg-gray-200 bg-opacity-75 rounded-full focus:outline-none"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            class="w-6 h-6 mx-auto fill-current"
+            fill="currentColor"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </button>
       </div>
 
       <hr class="bg-gray-200" />
 
       <!-- daily modules forecast -->
       <div
-        class="flex items-center h-32 gap-4 mt-5 overflow-scroll overflow-y-hidden scrolling-touch whitespace-no-wrap lg:justify-center w-100 scrollbar-none"
+        class="relative flex items-center justify-start px-1 my-4 overflow-hidden whitespace-no-wrap xl:justify-center sm:grid-cols-6 md:grid-cols-7 lg:grid-cols-8"
       >
+        <button
+          type="button"
+          class="absolute left-0 w-8 h-8 bg-gray-200 bg-opacity-75 rounded-full focus:outline-none"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            class="w-6 h-6 mx-auto fill-current"
+            fill="currentColor"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </button>
         <div v-for="(day, index) in weather.daily" :key="day.dt">
           <div
-            class="flex flex-col items-center justify-center flex-auto w-24 py-2 bg-yellow-200 bg-opacity-25 rounded-lg cursor-pointer card-l"
+            class="w-24 p-1 m-3 text-center bg-yellow-200 bg-opacity-25 rounded-lg cursor-pointer"
           >
-            <div class="">
-              <img class="h-10" :src="icon(day.weather[0].icon)" alt="" />
-              <div class="text-xs font-bold">
-                {{ Math.round(day.temp.min) }}&deg; -
-                {{ Math.round(day.temp.max) }}&deg;
-              </div>
-              <div
-                v-if="index === 0"
-                class="px-1 mt-1 text-sm text-gray-100 uppercase bg-blue-500 rounded-sm"
-              >
-                Today
-              </div>
-              <div v-else>{{ utc_date(day.dt) }}</div>
+            <img class="h-10 mx-auto" :src="icon(day.weather[0].icon)" alt="" />
+            <div class="text-sm font-bold">
+              {{ Math.round(day.temp.min) }}&deg; -
+              {{ Math.round(day.temp.max) }}&deg;
             </div>
+            <div
+              v-if="index === 0"
+              class="px-1 mt-2 text-sm text-gray-100 uppercase bg-blue-500 rounded-sm"
+            >
+              Today
+            </div>
+            <div v-else>{{ utc_date(day.dt) }}</div>
           </div>
         </div>
+        <button
+          type="button"
+          class="absolute right-0 w-8 h-8 bg-gray-200 bg-opacity-75 rounded-full focus:outline-none"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            class="w-6 h-6 mx-auto fill-current"
+            fill="currentColor"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </button>
       </div>
     </div>
+
     <div
-      class="w-full h-full p-5 pt-20 md:px-16 lg:px-32 bg-warm"
+      class="w-full h-full p-5 pt-20 md:px-16 lg:px-32 bg-gradient-to-bl from-red-900 to-gray-800"
       v-else-if="
         typeof weather.timezone == 'undefined' ||
           typeof weather.timezone == null

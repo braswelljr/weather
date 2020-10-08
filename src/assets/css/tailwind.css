@@ -6,22 +6,6 @@
 .card-r:not(:last-child){
   margin-right: 1.5rem;
 }
-.bg-warm{
-  background-image: url(./../img/forest-3119826_1280.jpg);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  min-height: 100%;
-  min-width: 100%;
-}
-.bg-cool{
-  background-image: url(./../img/sky-690293_1280.jpg);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  min-height: 100%;
-  min-width: 100%;
-}
 @-webkit-keyframes bouncing-loader {
   to {
     opacity: 0.1;
