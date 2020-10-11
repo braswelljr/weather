@@ -26,7 +26,9 @@ module.exports = {
       })
     },
     fontFamily: {},
-    inset: theme => ({
+    inset: {
+      "0": "0",
+      auto: "auto",
       "2-5": "2.5%",
       "5": "5%",
       "10": "10%",
@@ -69,7 +71,7 @@ module.exports = {
       "-90": "-90%",
       "-95": "-95%",
       "-100": "-100%"
-    }),
+    },
     zIndex: {
       auto: "auto",
       "0": "0",
