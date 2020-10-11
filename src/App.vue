@@ -231,6 +231,10 @@ export default {
       timeout: 10000,
       maximumAge: 0
     });
+    // fetch(`./info.json`)
+    //   .then(response => response.json())
+    //   .then(result => (this.weather = result))
+    //   .catch(error => console.warn(error));
   }
 };
 </script>
