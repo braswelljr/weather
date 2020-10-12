@@ -3,8 +3,7 @@ _******Weather******_ is a frontend javascript base _**Open Source project**_ de
 
 Weather is built on :
 - [Vue.js](https://vuejs.org/)
-- [Vue-Router](https://https://router.vuejs.org/)
-- [Vuex](https://vuex.vuejs.org/)         
+- [Vue-Router](https://https://router.vuejs.org/)      
 - [Tailwindcss](https://tailwindcss.com/)
 - [OpenWeatherMap](https://openweathermap.org)
 - [Chart.js](https://www.chartjs.org)

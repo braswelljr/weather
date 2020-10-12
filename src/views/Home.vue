@@ -121,12 +121,10 @@
       </div>
 
       <!-- hourly modules forecast -->
-      <div
-        class="relative flex items-center justify-start px-1 my-4 overflow-hidden whitespace-no-wrap sm:grid-cols-6 md:grid-cols-7 lg:grid-cols-8"
-      >
+      <div class="flex items-center justify-between">
         <button
           type="button"
-          class="absolute left-0 w-8 h-8 bg-gray-200 bg-opacity-75 rounded-full focus:outline-none"
+          class="left-0 w-8 h-8 bg-gray-200 bg-opacity-75 rounded-full focus:outline-none"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -141,30 +139,34 @@
             />
           </svg>
         </button>
-        <div v-for="(hour, index) in weather.hourly" :key="hour.dt">
-          <div
-            class="w-24 p-1 m-3 text-center bg-yellow-200 bg-opacity-25 rounded-lg cursor-pointer"
-          >
-            <img
-              class="h-10 mx-auto"
-              :src="icon(hour.weather[0].icon)"
-              alt=""
-            />
-            <div class="text-sm font-bold">
-              {{ Math.round(hour.temp * 10) / 10 }}&deg;C
-            </div>
+        <div
+          class="flex items-center justify-start my-4 overflow-x-scroll overflow-y-hidden whitespace-no-wrap"
+        >
+          <div v-for="(hour, index) in weather.hourly" :key="hour.dt">
             <div
-              v-if="index === 0"
-              class="px-1 mt-2 text-xs text-gray-100 uppercase bg-blue-500 rounded-sm"
+              class="w-24 p-1 m-3 text-center bg-yellow-200 bg-opacity-25 rounded-lg cursor-pointer"
             >
-              NOW
+              <img
+                class="h-10 mx-auto"
+                :src="icon(hour.weather[0].icon)"
+                alt=""
+              />
+              <div class="text-sm font-bold">
+                {{ Math.round(hour.temp * 10) / 10 }}&deg;C
+              </div>
+              <div
+                v-if="index === 0"
+                class="px-1 mt-2 text-xs text-gray-100 uppercase bg-blue-500 rounded-sm"
+              >
+                NOW
+              </div>
+              <div v-else>{{ hours(utc_to_hours(hour.dt)) }}</div>
             </div>
-            <div v-else>{{ hours(utc_to_hours(hour.dt)) }}</div>
           </div>
         </div>
         <button
           type="button"
-          class="absolute right-0 w-8 h-8 bg-gray-200 bg-opacity-75 rounded-full focus:outline-none"
+          class="w-8 h-8 bg-gray-200 bg-opacity-75 rounded-full focus:outline-none"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -184,17 +186,15 @@
       <hr class="bg-gray-200" />
 
       <!-- daily modules forecast -->
-      <div
-        class="relative flex items-center justify-start px-1 my-4 overflow-hidden whitespace-no-wrap xl:justify-center sm:grid-cols-6 md:grid-cols-7 lg:grid-cols-8"
-      >
+      <div class="flex items-center justify-between">
         <button
           type="button"
-          class="absolute left-0 w-8 h-8 bg-gray-200 bg-opacity-75 rounded-full focus:outline-none"
+          class="w-8 h-8 bg-gray-200 bg-opacity-75 rounded-full focus:outline-none"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
-            class="w-6 h-6 mx-auto fill-current"
+            class="w-6 h-6 p-2 mx-auto fill-current"
             fill="currentColor"
           >
             <path
@@ -204,32 +204,40 @@
             />
           </svg>
         </button>
-        <div v-for="(day, index) in weather.daily" :key="day.dt">
-          <div
-            class="w-24 p-1 m-3 text-center bg-yellow-200 bg-opacity-25 rounded-lg cursor-pointer"
-          >
-            <img class="h-10 mx-auto" :src="icon(day.weather[0].icon)" alt="" />
-            <div class="text-sm font-bold">
-              {{ Math.round(day.temp.min) }}&deg; -
-              {{ Math.round(day.temp.max) }}&deg;
-            </div>
+        <div
+          class="flex items-center justify-start my-4 overflow-x-scroll overflow-y-hidden whitespace-no-wrap xl:justify-center"
+        >
+          <div v-for="(day, index) in weather.daily" :key="day.dt">
             <div
-              v-if="index === 0"
-              class="px-1 mt-2 text-sm text-gray-100 uppercase bg-blue-500 rounded-sm"
+              class="w-24 p-1 m-3 text-center bg-yellow-200 bg-opacity-25 rounded-lg cursor-pointer"
             >
-              Today
+              <img
+                class="h-10 mx-auto"
+                :src="icon(day.weather[0].icon)"
+                alt=""
+              />
+              <div class="text-sm font-bold">
+                {{ Math.round(day.temp.min) }}&deg; -
+                {{ Math.round(day.temp.max) }}&deg;
+              </div>
+              <div
+                v-if="index === 0"
+                class="px-1 mt-2 text-sm text-gray-100 uppercase bg-blue-500 rounded-sm"
+              >
+                Today
+              </div>
+              <div v-else>{{ utc_date(day.dt) }}</div>
             </div>
-            <div v-else>{{ utc_date(day.dt) }}</div>
           </div>
         </div>
         <button
           type="button"
-          class="absolute right-0 w-8 h-8 bg-gray-200 bg-opacity-75 rounded-full focus:outline-none"
+          class="w-8 h-8 bg-gray-200 bg-opacity-75 rounded-full focus:outline-none"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
-            class="w-6 h-6 mx-auto fill-current"
+            class="w-6 h-6 p-2 mx-auto fill-current"
             fill="currentColor"
           >
             <path
@@ -241,7 +249,6 @@
         </button>
       </div>
     </div>
-
     <div
       class="w-full h-full p-5 pt-20 md:px-16 lg:px-32 bg-gradient-to-bl from-red-900 to-gray-800"
       v-else-if="
