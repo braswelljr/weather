@@ -33,4 +33,4 @@ npm run lint
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
-checkout the weather mockup on [atweather.netlify.app](atweather.netlify.app)
+Checkout the Weather mockup on _[atweather.netlify.app](atweather.netlify.app)_
