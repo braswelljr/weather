@@ -27,7 +27,7 @@
         />
         <button
           type="button"
-          :class="open ? '-ml-8 text-current' : 'text-gray-400 mt-1'"
+          :class="open ? '-ml-8 text-current -mt-1' : 'text-gray-400'"
           class="inline-block px-1 mt-2 border-none outline-none sm:mt-1 sm:text-current sm:-ml-8 focus:outline-none active:border-none"
         >
           <svg
@@ -61,14 +61,18 @@
           class="absolute inset-0 z-10 block w-6 ml-auto bg-transparent border-none outline-none sm:w-full focus:outline-none"
         ></button>
       </div>
-      <button
-        type="button"
-        @click="open = !open"
-        tabindex="-1"
-        v-if="open"
-        class="absolute inset-0 z-auto w-full h-full bg-gray-400 bg-opacity-50"
-      ></button>
-      <search-card :query="query" />
+      <div
+        class="absolute inset-0 flex items-center justify-center w-full h-full"
+      >
+        <div
+          type="button"
+          @click="open = !open"
+          tabindex="-1"
+          v-if="open"
+          class="absolute inset-0 z-auto w-full h-full bg-gray-400 bg-opacity-50"
+        ></div>
+        <search-card v-if="open" />
+      </div>
     </div>
   </div>
 </template>
@@ -92,9 +96,5 @@ export default {
       weather: {}
     };
   }
-  /**
-  # todos
-  # loading when typing hot reload modules
-  */
 };
 </script>

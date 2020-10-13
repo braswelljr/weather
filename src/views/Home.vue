@@ -194,7 +194,7 @@
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
-            class="w-6 h-6 p-2 mx-auto fill-current"
+            class="w-6 h-6 mx-auto fill-current"
             fill="currentColor"
           >
             <path
@@ -237,7 +237,7 @@
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
-            class="w-6 h-6 p-2 mx-auto fill-current"
+            class="w-6 h-6 mx-auto fill-current"
             fill="currentColor"
           >
             <path
