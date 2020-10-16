@@ -21,6 +21,10 @@ const routes = [
     path: "/map",
     name: "Map",
     component: () => import(/* webpackChunkName: "map" */ "../views/Map.vue")
+  },
+  {
+    path: "/*",
+    component: 404
   }
 ];
 
