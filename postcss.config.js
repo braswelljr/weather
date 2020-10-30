@@ -1,7 +1,7 @@
 module.exports = {
   plugins: [
     require("tailwindcss"),
-    //require("autoprefixer")({ grid: "autoplace" }),
+    require("autoprefixer"),
     require("cssnano")({ preset: "default" })
   ]
 };

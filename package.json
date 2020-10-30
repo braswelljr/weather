@@ -23,6 +23,7 @@
     "webpack-cli": "^3.3.12"
   },
   "devDependencies": {
+    "@types/autoprefixer": "^9.7.2",
     "@vue/cli-plugin-babel": "^4.5.8",
     "@vue/cli-plugin-eslint": "^4.5.8",
     "@vue/cli-plugin-pwa": "^4.5.8",
@@ -31,7 +32,7 @@
     "@vue/cli-service": "^4.5.8",
     "@vue/compiler-sfc": "^3.0.2",
     "@vue/eslint-config-prettier": "^6.0.0",
-    "autoprefixer": "^10.0.1",
+    "autoprefixer": "^9.8.6",
     "babel-eslint": "^10.1.0",
     "cssnano": "^4.1.10",
     "eslint": "^6.7.2",
