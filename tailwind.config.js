@@ -13,7 +13,7 @@ module.exports = {
   },
   theme: {
     extend: {
-      spacing: theme => ({
+      spacing: {
         "72": "18rem",
         "80": "20rem",
         "96": "24rem",
@@ -23,7 +23,7 @@ module.exports = {
         "160": "40rem",
         "192": "48rem",
         "204": "56rem"
-      })
+      }
     },
     fontFamily: {},
     inset: {
