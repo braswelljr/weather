@@ -1,6 +1,6 @@
 <template>
   <div
-    class="fixed inset-x-0 top-0 z-20 flex items-start justify-between gap-16 px-2 py-2 pt-3 bg-gray-800 rounded-lg md:px-8 lg:px-16"
+    class="fixed inset-x-0 top-0 z-20 flex items-start justify-between gap-16 px-2 py-2 pt-3 bg-gray-900 rounded-lg md:px-8 lg:px-16"
     :class="open ? 'h-full' : 'mx-2 mt-2 md:mx-8 lg:mx-16'"
   >
     <div class="text-gray-400">
@@ -20,6 +20,8 @@
         <input
           type="text"
           name="search"
+          v-model="query"
+          v-on:keydown.enter="fetchWeather"
           :class="open ? 'inline-block' : 'hidden'"
           class="w-full h-10 px-4 py-2 mx-0 text-lg font-semibold text-current placeholder-current border border-gray-500 rounded-md outline-none sm:inline-block focus:outline-none"
           placeholder="SEARCH CITY"
@@ -28,7 +30,8 @@
         <button
           type="button"
           :class="open ? '-ml-8 text-current -mt-1' : 'text-gray-400'"
-          class="inline-block px-1 mt-2 border-none outline-none sm:mt-1 sm:text-current sm:-ml-8 focus:outline-none active:border-none"
+          @click="fetchWeather"
+          class="inline-block px-1 mt-2 border-none outline-none sm:mt-1 sm:text-current sm:-ml-8 focus:outline-none active:border-none active:mt-1"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -71,7 +74,7 @@
           v-if="open"
           class="absolute inset-0 z-auto w-full h-full bg-gray-400 bg-opacity-50"
         ></div>
-        <search-card v-if="open" />
+        <SearchCard v-if="open" :weather="weather" />
       </div>
     </div>
   </div>
@@ -95,6 +98,16 @@ export default {
       query: "",
       weather: {}
     };
+  },
+  methods: {
+    fetchWeather() {
+      fetch(
+        `${this.url}weather?q=${this.query}&appid=${this.apiKey}&units=metric`
+      )
+        .then(response => response.json())
+        .then(result => (this.weather = result))
+        .catch(error => console.error(error));
+    }
   }
 };
 </script>

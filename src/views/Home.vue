@@ -5,8 +5,8 @@
       v-if="typeof weather.timezone != 'undefined'"
       :class="
         weather.current.temp < 18
-          ? 'bg-gradient-to-r from-blue-600 to-gray-500 text-gray-800'
-          : 'bg-gradient-to-bl from-red-900 to-gray-800 text-gray-200'
+          ? 'bg-gradient-to-r from-blue-700 to-blue-300 text-gray-900 animate-move'
+          : 'bg-gradient-to-bl from-red-700 to-red-300 text-gray-900 animate-move'
       "
     >
       <div
@@ -142,9 +142,13 @@
         <div
           class="flex items-center justify-start my-4 overflow-x-scroll overflow-y-hidden whitespace-no-wrap"
         >
-          <div v-for="(hour, index) in weather.hourly" :key="hour.dt">
+          <div
+            v-for="(hour, index) in weather.hourly"
+            :key="index"
+            class="my-2 mr-3"
+          >
             <div
-              class="w-24 p-1 m-3 text-center bg-yellow-200 bg-opacity-25 rounded-lg cursor-pointer"
+              class="w-24 p-1 text-center bg-yellow-200 bg-opacity-25 rounded-lg cursor-pointer"
             >
               <img
                 class="h-10 mx-auto"
@@ -156,7 +160,7 @@
               </div>
               <div
                 v-if="index === 0"
-                class="px-1 mt-2 text-xs text-gray-100 uppercase bg-blue-500 rounded-sm"
+                class="px-1 mt-1 text-xs text-gray-100 uppercase bg-blue-500 rounded-sm"
               >
                 NOW
               </div>
@@ -207,9 +211,13 @@
         <div
           class="flex items-center justify-start my-4 overflow-x-scroll overflow-y-hidden whitespace-no-wrap xl:justify-center"
         >
-          <div v-for="(day, index) in weather.daily" :key="day.dt">
+          <div
+            v-for="(day, index) in weather.daily"
+            :key="day.dt"
+            class="my-2 mr-2"
+          >
             <div
-              class="w-24 p-1 m-3 text-center bg-yellow-200 bg-opacity-25 rounded-lg cursor-pointer"
+              class="w-24 p-1 text-center bg-yellow-200 bg-opacity-25 rounded-lg cursor-pointer "
             >
               <img
                 class="h-10 mx-auto"
@@ -222,7 +230,7 @@
               </div>
               <div
                 v-if="index === 0"
-                class="px-1 mt-2 text-sm text-gray-100 uppercase bg-blue-500 rounded-sm"
+                class="px-1 mt-1 text-sm text-gray-100 uppercase bg-blue-500 rounded-sm"
               >
                 Today
               </div>
@@ -250,7 +258,7 @@
       </div>
     </div>
     <div
-      class="w-full h-full p-5 pt-20 md:px-16 lg:px-32 bg-gradient-to-bl from-red-900 to-gray-800"
+      class="w-full h-full p-5 pt-20 md:px-16 lg:px-32 bg-gradient-to-bl from-red-700 to-red-300 animate-move"
       v-else-if="
         typeof weather.timezone == 'undefined' ||
           typeof weather.timezone == null
@@ -317,14 +325,10 @@ export default {
       } ${day.getDate()}, ${day.getFullYear()}`;
     },
     utc_to_time(time) {
-      const date = new Date(time * 1000);
-
-      return date.toUTCString().slice(-11, -4);
+      return new Date(time * 1000).toUTCString().slice(-11, -4);
     },
     utc_to_hours(time) {
-      const date = new Date(time * 1000);
-
-      return date.toUTCString().slice(-12, -10);
+      return new Date(time * 1000).toUTCString().slice(-12, -10);
     },
     hours(hour) {
       let ampm = "am";
@@ -334,9 +338,7 @@ export default {
       return `${hour} ${ampm}`;
     },
     utc_date(time) {
-      const date = new Date(time * 1000);
-
-      return date.toUTCString().slice(-24, -18);
+      return new Date(time * 1000).toUTCString().slice(-24, -18);
     }
   },
   mounted() {}

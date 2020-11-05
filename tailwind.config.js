@@ -1,5 +1,3 @@
-const plugin = require("tailwindcss/plugin");
-
 module.exports = {
   purge: {
     mode: "all",
@@ -111,18 +109,23 @@ module.exports = {
     height: ["responsive", "hover", "focus"],
     inset: ["responsive", "hover", "focus"],
     outLine: ["responsive", "hover", "focus", "active"],
+    space: [
+      "responsive",
+      "first",
+      "last",
+      "hover",
+      "focus",
+      "active",
+      "group-hover",
+      "group-focus"
+    ],
     width: ["responsive", "hover", "focus", "active"],
     zIndex: ["responsive", "hover", "focus"]
   },
   plugins: [
-    require("tailwindcss-debug-screens"),
-    require("tailwindcss-flexbox-order")(),
-    plugin(function({ addVariant, e }) {
-      addVariant("first-child", ({ modifySelectors, separator }) => {
-        modifySelectors(({ className }) => {
-          return `.${e(`first-child${separator}${className}`)}:first-child`;
-        });
-      });
-    })
+    process.env.NODE_ENV === "production"
+      ? false
+      : require("tailwindcss-debug-screens"),
+    require("tailwindcss-flexbox-order")()
   ]
 };

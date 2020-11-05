@@ -1,15 +1,18 @@
 @tailwind base;
 @tailwind components;
-.card-l:not(:first-child){
-  margin-left: 1.5rem;
+.animate-move{
+  background-size: 400% 400%;
+  animation: background-move 5s alternate infinite; 
 }
-.card-r:not(:last-child){
-  margin-right: 1.5rem;
-}
-@-webkit-keyframes bouncing-loader {
-  to {
-    opacity: 0.1;
-    transform: translate3d(0, -7.5rem, 0);
+@keyframes background-move{
+  0%{
+    background-position: 0 50%;
+  }
+  50%{
+    background-position: 50% 100%;
+  }
+  100%{
+    background-position: 50% 0;
   }
 }
 @keyframes bouncing-loader {

@@ -1,0 +1,43 @@
+{
+  "coord": {
+    "lon": -1.62,
+    "lat": 6.69
+  },
+  "weather": [
+    {
+      "id": 801,
+      "main": "Clouds",
+      "description": "few clouds",
+      "icon": "02d"
+    }
+  ],
+  "base": "stations",
+  "main": {
+    "temp": 28.75,
+    "feels_like": 32.5,
+    "temp_min": 28.75,
+    "temp_max": 28.75,
+    "pressure": 1008,
+    "humidity": 66,
+    "sea_level": 1008,
+    "grnd_level": 979
+  },
+  "visibility": 10000,
+  "wind": {
+    "speed": 1.17,
+    "deg": 109
+  },
+  "clouds": {
+    "all": 15
+  },
+  "dt": 1604163608,
+  "sys": {
+    "country": "GH",
+    "sunrise": 1604123603,
+    "sunset": 1604166398
+  },
+  "timezone": 0,
+  "id": 2298890,
+  "name": "Kumasi",
+  "cod": 200
+}
