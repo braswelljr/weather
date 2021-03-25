@@ -9,7 +9,7 @@
           : ' bg-gray-900 text-gray-200'
       "
     >
-      <h1 class="text-3xl font-semibold text-center uppercase">Map</h1>
+      <div id="map"></div>
     </div>
     <div
       class="w-full h-full p-5 pt-20 bg-gray-900 md:px-16 lg:px-32"
@@ -32,7 +32,36 @@ export default {
   components: {},
   props: {
     weather: Object,
-    timer: String
+    timer: String,
+    coordinates: Object
+  },
+  methods: {},
+  mounted() {
+    const apiKey = `AIzaSyBsSvMmu-_CTDsAki81pz5eWeaQMYzNq_k`;
+    const script = document.createElement("script");
+    script.setAttribute(`async`, ``);
+    script.setAttribute(`defer`, ``);
+    script.setAttribute(
+      "src",
+      `https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=${initMap()}`
+    );
+    document.head.appendChild(script);
+    const coords = {
+      lat: this.coordinates.latitude,
+      lng: this.coordinates.longitude
+    };
+    function initMap() {
+      /* eslint-disable no-undef */
+      const map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 8,
+        center: coords
+      });
+      /* eslint-disable no-undef */
+      const marker = new google.maps.Marker({
+        position: coords,
+        map: map
+      });
+    }
   }
 };
 </script>
