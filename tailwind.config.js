@@ -1,14 +1,11 @@
 module.exports = {
   purge: {
     mode: "all",
-    enabled: false,
+    enabled: true,
     content: ["./src/**/*.vue", "./public/index.html"],
     preserveHtmlElements: true
   },
-  future: {
-    removeDeprecatedGapUtilities: true,
-    purgeLayersByDefault: true
-  },
+  darkMode: false,
   theme: {
     extend: {
       spacing: {
