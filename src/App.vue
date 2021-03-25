@@ -106,7 +106,7 @@ export default {
   props: {},
   data() {
     return {
-      title: "Weather",
+      title: "kink",
       menu: false,
       apiKey: "7fb835437f08fb223edaa59872401a5a",
       url: "https://api.openweathermap.org/data/2.5/",
