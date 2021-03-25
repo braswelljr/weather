@@ -2,7 +2,12 @@
   <div class="">
     <!-- navbar -->
     <Navbar :title="title" :url="url" :apiKey="apiKey" />
-    <router-view :weather="weather" :timer="timer" :key="$route.fullPath" />
+    <router-view
+      :weather="weather"
+      :timer="timer"
+      :coordinates="coordinates"
+      :key="$route.fullPath"
+    />
     <!-- buttons -->
     <div
       class="fixed bottom-0 right-0 z-10 flex flex-col w-auto h-auto mr-5 text-gray-200 transform bg-transparent md:mr-16 lg:mr-24"
