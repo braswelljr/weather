@@ -122,23 +122,6 @@
 
       <!-- hourly modules forecast -->
       <div class="flex items-center justify-between">
-        <button
-          type="button"
-          class="left-0 w-8 h-8 bg-gray-200 bg-opacity-75 rounded-full focus:outline-none"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20"
-            class="w-6 h-6 mx-auto fill-current"
-            fill="currentColor"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-              clip-rule="evenodd"
-            />
-          </svg>
-        </button>
         <div
           class="flex items-center justify-start my-4 overflow-x-scroll overflow-y-hidden whitespace-no-wrap"
         >
@@ -168,46 +151,12 @@
             </div>
           </div>
         </div>
-        <button
-          type="button"
-          class="w-8 h-8 bg-gray-200 bg-opacity-75 rounded-full focus:outline-none"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20"
-            class="w-6 h-6 mx-auto fill-current"
-            fill="currentColor"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-              clip-rule="evenodd"
-            />
-          </svg>
-        </button>
       </div>
 
       <hr class="bg-gray-200" />
 
       <!-- daily modules forecast -->
       <div class="flex items-center justify-between">
-        <button
-          type="button"
-          class="w-8 h-8 bg-gray-200 bg-opacity-75 rounded-full focus:outline-none"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20"
-            class="w-6 h-6 mx-auto fill-current"
-            fill="currentColor"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-              clip-rule="evenodd"
-            />
-          </svg>
-        </button>
         <div
           class="flex items-center justify-start my-4 overflow-x-scroll overflow-y-hidden whitespace-no-wrap xl:justify-center"
         >
@@ -238,23 +187,6 @@
             </div>
           </div>
         </div>
-        <button
-          type="button"
-          class="w-8 h-8 bg-gray-200 bg-opacity-75 rounded-full focus:outline-none"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20"
-            class="w-6 h-6 mx-auto fill-current"
-            fill="currentColor"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-              clip-rule="evenodd"
-            />
-          </svg>
-        </button>
       </div>
     </div>
     <div

@@ -15,8 +15,9 @@
       <router-link to="/" class="w-auto h-auto mb-5">
         <button
           type="button"
-          v-if="menu"
-          class="inline-flex items-center w-12 h-12 mx-auto bg-gray-800 border-none rounded-full outline-none btn-eased animation-delay-300 focus:outline-none"
+          class="inline-flex items-center w-12 h-12 mx-auto transition-all duration-300 delay-100 transform bg-gray-800 border-none rounded-full outline-none focus:outline-none"
+          :class="!menu ? `relative -z-10` : ``"
+          :style="!menu ? `transform: translateY(8.5rem)` : ``"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -38,8 +39,9 @@
       <router-link to="/chart" class="w-auto h-auto mb-5">
         <button
           type="button"
-          v-if="menu"
-          class="inline-flex items-center w-12 h-12 mx-auto bg-gray-800 border-none rounded-full outline-none btn-eased animation-delay-200 focus:outline-none"
+          class="inline-flex items-center w-12 h-12 mx-auto transition-all duration-300 transform bg-gray-800 border-none rounded-full outline-none focus:outline-none"
+          :class="!menu ? `relative -z-10` : ``"
+          :style="!menu ? `transform: translateY(4.25rem)` : ``"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -54,31 +56,6 @@
             <path stroke="none" d="M0 0h24v24H0z" />
             <line x1="4" y1="19" x2="20" y2="19" />
             <polyline points="4 15 8 9 12 11 16 6 20 10" />
-          </svg>
-        </button>
-      </router-link>
-      <router-link to="/map" class="w-auto h-auto mb-5"
-        ><button
-          type="button"
-          v-if="menu"
-          class="inline-flex items-center w-12 h-12 mx-auto bg-gray-800 border-none rounded-full outline-none btn-eased animation-delay-100 focus:outline-none"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            class="h-8 mx-auto stroke-current"
-            stroke-width="1.5"
-            stroke="currentColor"
-            fill="none"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path stroke="none" d="M0 0h24v24H0z" />
-            <line x1="18" y1="6" x2="18" y2="6.01" />
-            <path d="M18 13l-3.5 -5a4 4 0 1 1 7 0l-3.5 5" />
-            <polyline points="10.5 4.75 9 4 3 7 3 20 9 17 15 20 21 17 21 15" />
-            <line x1="9" y1="4" x2="9" y2="17" />
-            <line x1="15" y1="15" x2="15" y2="20" />
           </svg>
         </button>
       </router-link>
@@ -131,7 +108,7 @@ export default {
     return {
       title: "Weather",
       menu: false,
-      apiKey: "5e2611f98d737a1336862f89296f74c1",
+      apiKey: "7fb835437f08fb223edaa59872401a5a",
       url: "https://api.openweathermap.org/data/2.5/",
       coordinates: {},
       weather: {},
@@ -217,6 +194,7 @@ export default {
     }, 1000);
     const successCallback = position => {
       this.coordinates = position.coords;
+      //${this.url}onecall?lat=${this.coordinates.latitude}&lon=${this.coordinates.longitude}&units=metric&appid=${this.apiKey}
 
       fetch(
         `${this.url}onecall?lat=${this.coordinates.latitude}&lon=${this.coordinates.longitude}&units=metric&appid=${this.apiKey}`
